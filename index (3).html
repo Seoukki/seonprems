@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>SeonsPrems — Premium Digital Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════
+   DESIGN TOKENS — LIGHT (default)
+════════════════════════════════════════ */
+:root, [data-theme="light"] {
+  --bg:       #ffffff;
+  --bg2:      #f7f8fa;
+  --bg3:      #f0f2f6;
+  --bg4:      #e8eaf0;
+  --bgc:      rgba(0,0,0,.028);
+  --bgh:      rgba(0,0,0,.05);
+  --bd:       rgba(0,0,0,.08);
+  --bd2:      rgba(0,0,0,.13);
+  --bd3:      rgba(0,0,0,.22);
+  --t1:       #0a0c10;
+  --t2:       #5a6072;
+  --t3:       #9ba3b4;
+  --t4:       #c8cdd8;
+  --ac:       #111827;
+  --ac2:      #374151;
+  --acsub:    rgba(17,24,39,.08);
+  --acborder: rgba(17,24,39,.2);
+  --green:    #059669;
+  --greenb:   rgba(5,150,105,.1);
+  --red:      #dc2626;
+  --redb:     rgba(220,38,38,.1);
+  --yellow:   #d97706;
+  --yellowb:  rgba(217,119,6,.1);
+  --blue:     #2563eb;
+  --blueb:    rgba(37,99,235,.1);
+  --purple:   #7c3aed;
+  --shadow:   0 4px 24px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+  --shadow2:  0 2px 10px rgba(0,0,0,.06);
+  --shadowl:  0 8px 40px rgba(0,0,0,.12);
+  --r:        8px; --r2: 12px; --r3: 16px; --r4: 20px;
+  --hh:       60px; --sw:260px;
+  --ticker-l: linear-gradient(90deg, var(--bg), transparent);
+  --ticker-r: linear-gradient(270deg, var(--bg), transparent);
+}
+/* ════════════════════════════════════════
+   DARK THEME
+════════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg:       #0d0f14;
+  --bg2:      #13161e;
+  --bg3:      #181c26;
+  --bg4:      #1e2233;
+  --bgc:      rgba(255,255,255,.03);
+  --bgh:      rgba(255,255,255,.055);
+  --bd:       rgba(255,255,255,.07);
+  --bd2:      rgba(255,255,255,.12);
+  --bd3:      rgba(255,255,255,.2);
+  --t1:       #e8ecf5;
+  --t2:       #8892a8;
+  --t3:       #4a5568;
+  --t4:       #2d3748;
+  --ac:       #e8ecf5;
+  --ac2:      #a8b4cc;
+  --acsub:    rgba(232,236,245,.08);
+  --acborder: rgba(232,236,245,.15);
+  --green:    #10b981;
+  --greenb:   rgba(16,185,129,.1);
+  --red:      #ef4444;
+  --redb:     rgba(239,68,68,.1);
+  --yellow:   #f59e0b;
+  --yellowb:  rgba(245,158,11,.1);
+  --blue:     #60a5fa;
+  --blueb:    rgba(96,165,250,.1);
+  --purple:   #a78bfa;
+  --shadow:   0 4px 24px rgba(0,0,0,.4), 0 1px 4px rgba(0,0,0,.2);
+  --shadow2:  0 2px 10px rgba(0,0,0,.3);
+  --shadowl:  0 8px 40px rgba(0,0,0,.5);
+  --ticker-l: linear-gradient(90deg, var(--bg), transparent);
+  --ticker-r: linear-gradient(270deg, var(--bg), transparent);
+}
+
+/* ════════════════════════════════════════
+   RESET & BASE
+════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Sora',sans-serif;
+  background:var(--bg);color:var(--t1);
+  line-height:1.6;overflow-x:hidden;min-height:100vh;
+  transition:background .25s,color .25s;
+}
+a{text-decoration:none;color:inherit}
+button{font-family:'Sora',sans-serif;cursor:pointer;border:none;outline:none}
+input,select,textarea{font-family:'Sora',sans-serif}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bd3);border-radius:4px}
+
+.tr,*.tr{transition:background .25s,border-color .25s,color .25s,box-shadow .25s !important}
+
+/* ════════════════════════════════════════
+   LAYOUT
+════════════════════════════════════════ */
+.wrap{display:flex;padding-top:var(--hh);min-height:100vh}
+.main{margin-left:var(--sw);flex:1;min-height:calc(100vh - var(--hh));overflow-x:hidden}
+.pg{display:none}
+.pg.act{display:block}
+
+/* ════════════════════════════════════════
+   HEADER
+════════════════════════════════════════ */
+.hd{
+  position:fixed;top:0;left:0;right:0;height:var(--hh);
+  background:var(--bg);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--bd);
+  display:flex;align-items:center;padding:0 20px;z-index:100;gap:12px;
+  transition:background .25s,border-color .25s;
+}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;transition:opacity .18s;flex-shrink:0}
+.logo:hover{opacity:.75}
+.logo-mark{
+  width:32px;height:32px;border-radius:9px;
+  background:var(--t1);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:background .25s;
+}
+.logo-mark svg{color:#fff;width:16px;height:16px}
+[data-theme="dark"] .logo-mark svg{color:var(--bg)}
+.logo-text{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:800;letter-spacing:-.3px;line-height:1;color:var(--t1)}
+.logo-text span{opacity:.45}
+.logo-badge{font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px;background:var(--acsub);color:var(--t2);border:1px solid var(--bd);letter-spacing:.06em;font-family:'DM Mono',monospace;margin-left:2px}
+.hd-nav{display:flex;align-items:center;gap:1px;margin-left:auto}
+.hd-nav a{font-size:12.5px;font-weight:500;color:var(--t2);padding:6px 11px;border-radius:var(--r);transition:all .15s;cursor:pointer}
+.hd-nav a:hover{color:var(--t1);background:var(--bgc)}
+.hd-actions{display:flex;align-items:center;gap:6px;margin-left:8px}
+
+/* Theme Toggle Switch — neoxr style */
+.theme-sw{
+  display:flex;align-items:center;gap:7px;
+  background:var(--bg3);border:1px solid var(--bd2);
+  border-radius:20px;padding:4px 8px;cursor:pointer;
+  transition:all .25s;user-select:none;
+}
+.theme-sw:hover{border-color:var(--bd3)}
+.theme-sw-track{
+  width:36px;height:20px;background:var(--bg4);border-radius:10px;
+  position:relative;transition:background .25s;border:1px solid var(--bd2);
+  flex-shrink:0;
+}
+[data-theme="dark"] .theme-sw-track{background:var(--ac);border-color:var(--ac)}
+.theme-sw-thumb{
+  position:absolute;top:2px;left:2px;width:14px;height:14px;
+  background:var(--t3);border-radius:50%;transition:transform .25s,background .25s;
+}
+[data-theme="dark"] .theme-sw-thumb{transform:translateX(16px);background:var(--bg)}
+.theme-sw-lbl{font-size:11px;font-weight:600;color:var(--t2);font-family:'DM Mono',monospace;letter-spacing:.04em;transition:color .25s}
+
+.icon-btn{
+  width:34px;height:34px;border-radius:var(--r);border:1px solid var(--bd);
+  background:var(--bgc);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .18s;color:var(--t2);flex-shrink:0;
+}
+.icon-btn:hover{border-color:var(--bd2);color:var(--t1);background:var(--bgh)}
+.icon-btn svg{width:15px;height:15px}
+
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;color:var(--t2);border:1px solid transparent;border-radius:var(--r)}
+.hbg span{display:block;width:18px;height:1.5px;background:currentColor;border-radius:2px;transition:all .3s}
+.hbg.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ════════════════════════════════════════
+   SIDEBAR
+════════════════════════════════════════ */
+.sb{
+  position:fixed;left:0;top:var(--hh);width:var(--sw);
+  height:calc(100vh - var(--hh));border-right:1px solid var(--bd);
+  background:var(--bg);
+  overflow-y:auto;padding:16px 0 40px;z-index:50;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),background .25s,border-color .25s;
+}
+.sb::-webkit-scrollbar{width:0}
+.sb-section{padding:0 12px;margin-bottom:4px}
+.sb-ttl{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3);padding:10px 12px 6px;font-family:'DM Mono',monospace}
+.sb-menu{list-style:none}
+.sb-menu li a{
+  display:flex;align-items:center;gap:8px;padding:7px 12px;
+  font-size:12.5px;font-weight:500;color:var(--t2);cursor:pointer;
+  transition:all .15s;border-radius:var(--r);margin:1px 8px;position:relative;
+}
+.sb-menu li a:hover{color:var(--t1);background:var(--bgc)}
+.sb-menu li a.act{color:var(--t1);background:var(--bg3);font-weight:600}
+.sb-menu li a .ic{width:15px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:inherit;opacity:.7}
+.sb-menu li a .ic svg{width:14px;height:14px}
+.sb-menu li a.act .ic{opacity:1}
+.sb-div{height:1px;background:var(--bd);margin:8px 16px}
+.sb-chip{font-size:9px;font-weight:700;padding:1.5px 6px;border-radius:20px;background:var(--acsub);color:var(--t2);border:1px solid var(--bd);margin-left:auto;letter-spacing:.03em;font-family:'DM Mono',monospace}
+.sb-admin-badge{font-size:9px;font-weight:700;padding:1.5px 6px;border-radius:4px;background:var(--yellowb);color:var(--yellow);border:1px solid var(--yellow);margin-left:auto;letter-spacing:.03em;font-family:'DM Mono',monospace}
+
+/* ════════════════════════════════════════
+   TICKER
+════════════════════════════════════════ */
+.ticker{height:30px;overflow:hidden;display:flex;align-items:center;background:var(--bg2);border-bottom:1px solid var(--bd);position:relative;transition:background .25s,border-color .25s}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none}
+.ticker::before{left:0;background:var(--ticker-l)}
+.ticker::after{right:0;background:var(--ticker-r)}
+.t-lbl{background:var(--t1);color:var(--bg);font-family:'DM Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:0 14px;white-space:nowrap;border-right:1px solid var(--bd);height:100%;display:flex;align-items:center;flex-shrink:0;z-index:3;transition:background .25s,color .25s,border-color .25s}
+.t-track{display:flex;white-space:nowrap;animation:tickRoll 55s linear infinite}
+.t-track:hover{animation-play-state:paused}
+.t-item{font-size:11px;font-weight:400;color:var(--t2);padding:0 22px;display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace}
+.t-item::before{content:'·';opacity:.3}
+@keyframes tickRoll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+.hero{padding:36px 28px 28px;border-bottom:1px solid var(--bd);position:relative;overflow:hidden}
+.badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);border:1px solid var(--bd2);padding:4px 10px;border-radius:20px;margin-bottom:16px;font-family:'DM Mono',monospace;transition:all .25s}
+.badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:dotBlink 2.5s infinite;flex-shrink:0}
+@keyframes dotBlink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(26px,3.5vw,46px);font-weight:800;letter-spacing:-.5px;line-height:1.1;margin-bottom:12px;color:var(--t1)}
+.hero p{font-size:13px;color:var(--t2);max-width:420px;line-height:1.75}
+.stats{display:flex;flex-wrap:wrap;gap:0;margin-top:24px;border:1px solid var(--bd);border-radius:var(--r2);overflow:hidden;width:fit-content;background:var(--bg2);transition:all .25s}
+.stat{padding:12px 20px;text-align:center;border-right:1px solid var(--bd)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:700;color:var(--t1)}
+.stat-l{font-size:9px;color:var(--t3);margin-top:1px;font-family:'DM Mono',monospace;letter-spacing:.07em;text-transform:uppercase}
+
+/* ════════════════════════════════════════
+   CONTENT
+════════════════════════════════════════ */
+.ct{padding:24px 28px}
+.s-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.s-ttl{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t2);font-family:'DM Mono',monospace;display:flex;align-items:center;gap:8px}
+.s-ttl::before{content:'';width:3px;height:10px;background:var(--t1);border-radius:2px;flex-shrink:0}
+.s-ct{font-size:10px;color:var(--t3);font-family:'DM Mono',monospace}
+
+/* ════════════════════════════════════════
+   CATEGORIES
+════════════════════════════════════════ */
+.cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.cat{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border:1px solid var(--bd);border-radius:20px;font-size:11.5px;font-weight:500;color:var(--t2);background:transparent;cursor:pointer;transition:all .18s;white-space:nowrap}
+.cat svg{width:11px;height:11px;flex-shrink:0}
+.cat:hover{border-color:var(--bd2);color:var(--t1)}
+.cat.act{background:var(--t1);color:var(--bg);border-color:var(--t1)}
+
+/* ════════════════════════════════════════
+   PRODUCT GRID
+════════════════════════════════════════ */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-bottom:40px}
+.pc{
+  border:1px solid var(--bd);border-radius:var(--r2);padding:16px;
+  background:var(--bg);cursor:pointer;transition:all .22s;
+  position:relative;overflow:hidden;
+}
+.pc:hover{border-color:var(--bd3);box-shadow:var(--shadow);transform:translateY(-2px)}
+.pc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--t1);transform:scaleX(0);transform-origin:left;transition:transform .28s}
+.pc:hover::after{transform:scaleX(1)}
+.p-ico{
+  width:38px;height:38px;border-radius:9px;background:var(--bg3);
+  border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;
+  margin-bottom:12px;transition:all .22s;color:var(--t1);
+}
+.p-ico svg{width:18px;height:18px}
+.pc:hover .p-ico{background:var(--t1);color:var(--bg);border-color:var(--t1)}
+.p-bdg{position:absolute;top:10px;right:10px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding:2px 6px;border-radius:4px;font-family:'DM Mono',monospace}
+.p-bdg.hot{background:var(--redb);color:var(--red);border:1px solid var(--red)}
+.p-bdg.new{background:var(--blueb);color:var(--blue);border:1px solid var(--blue)}
+.p-bdg.sale{background:var(--yellowb);color:var(--yellow);border:1px solid var(--yellow)}
+.p-name{font-size:13px;font-weight:700;margin-bottom:4px;letter-spacing:-.2px;font-family:'Bricolage Grotesque',sans-serif}
+.p-desc{font-size:11px;color:var(--t2);margin-bottom:12px;line-height:1.55}
+.p-ft{display:flex;align-items:center;justify-content:space-between}
+.p-price{font-family:'DM Mono',monospace;font-size:12.5px;font-weight:500;color:var(--t1)}
+.p-sub{font-size:9px;color:var(--t3);display:block;margin-top:1px;font-family:'DM Mono',monospace}
+.p-arr{width:26px;height:26px;border:1px solid var(--bd);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--t3);transition:all .18s}
+.p-arr svg{width:12px;height:12px}
+.pc:hover .p-arr{background:var(--t1);color:var(--bg);border-color:var(--t1)}
+.p-stock{position:absolute;bottom:10px;left:10px;font-size:9px;font-family:'DM Mono',monospace;font-weight:500}
+.p-stock.low{color:var(--red)}
+.p-stock.ok{color:var(--green)}
+
+/* Skeleton */
+.skel{background:linear-gradient(90deg,var(--bg3) 0%,var(--bg4) 50%,var(--bg3) 100%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--r2)}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+/* ════════════════════════════════════════
+   DIVIDER
+════════════════════════════════════════ */
+.div{height:1px;background:var(--bd);margin:32px 0}
+
+/* ════════════════════════════════════════
+   TESTIMONIAL
+════════════════════════════════════════ */
+.tslider-wrap{position:relative;margin-bottom:36px}
+.tslider{overflow:hidden;border-radius:var(--r2)}
+.ttrack{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.tc{
+  min-width:100%;border:1px solid var(--bd);border-radius:var(--r2);padding:20px;
+  background:var(--bg2);transition:background .25s,border-color .25s;
+}
+.t-stars{font-size:11px;margin-bottom:8px;letter-spacing:2px;color:var(--yellow)}
+.t-txt{font-size:12.5px;color:var(--t2);line-height:1.75;margin-bottom:14px;font-style:italic}
+.t-auth{display:flex;align-items:center;gap:10px}
+.t-av{width:32px;height:32px;border-radius:50%;background:var(--t1);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--bg);flex-shrink:0;font-family:'Bricolage Grotesque',sans-serif;transition:background .25s,color .25s}
+.t-nm{font-size:12.5px;font-weight:700}
+.t-pd{font-size:10.5px;color:var(--t3)}
+.tslider-nav{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px}
+.tslider-nav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--bd);background:transparent;color:var(--t2);display:flex;align-items:center;justify-content:center;transition:all .18s}
+.tslider-nav button:hover{border-color:var(--t1);color:var(--t1)}
+.tslider-nav button svg{width:13px;height:13px}
+.tslider-dots{display:flex;gap:5px;align-items:center}
+.tdot{width:5px;height:5px;border-radius:50%;background:var(--bd3);cursor:pointer;transition:all .18s}
+.tdot.act{background:var(--t1);width:16px;border-radius:3px}
+
+/* ════════════════════════════════════════
+   FAQ
+════════════════════════════════════════ */
+.flist{display:flex;flex-direction:column;gap:5px;margin-bottom:36px}
+.fi{border:1px solid var(--bd);border-radius:var(--r2);overflow:hidden;background:var(--bg);transition:all .18s}
+.fi:hover,.fi.op{border-color:var(--bd2)}
+.fq{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;font-size:12.5px;font-weight:600;cursor:pointer;gap:12px;user-select:none}
+.fq:hover{background:var(--bgc)}
+.fic{width:20px;height:20px;border:1px solid var(--bd2);border-radius:5px;display:flex;align-items:center;justify-content:center;transition:all .25s;flex-shrink:0;color:var(--t2)}
+.fic svg{width:12px;height:12px;transition:transform .25s}
+.fi.op .fic{background:var(--t1);color:var(--bg);border-color:var(--t1)}
+.fi.op .fic svg{transform:rotate(45deg)}
+.fa{max-height:0;overflow:hidden;transition:max-height .32s cubic-bezier(.4,0,.2,1)}
+.fi.op .fa{max-height:300px}
+.fa-in{padding:0 14px 12px;font-size:12px;color:var(--t2);line-height:1.75;border-top:1px solid var(--bd);padding-top:11px}
+
+/* ════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════ */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:36px}
+.cc{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--bd);border-radius:var(--r2);background:var(--bg);cursor:pointer;transition:all .2s}
+.cc:hover{border-color:var(--bd2);box-shadow:var(--shadow2);transform:translateY(-1px)}
+.c-ico{width:36px;height:36px;border-radius:9px;background:var(--bg3);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--t1)}
+.c-ico svg{width:17px;height:17px}
+.c-lbl{font-size:10px;color:var(--t3);font-family:'DM Mono',monospace;letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px}
+.c-val{font-size:12.5px;font-weight:600;color:var(--t1)}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+.ft{padding:20px 28px;border-top:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ft-logo{font-family:'Bricolage Grotesque',sans-serif;font-size:15px;font-weight:800;color:var(--t1)}
+.ft-logo span{opacity:.35}
+.ft-txt{font-size:11px;color:var(--t3)}
+
+/* ════════════════════════════════════════
+   PRODUCT DETAIL
+════════════════════════════════════════ */
+.det{padding:24px 28px;max-width:520px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--t2);background:transparent;border:1px solid var(--bd);padding:7px 12px;border-radius:var(--r);margin-bottom:20px;transition:all .18s;cursor:pointer}
+.back svg{width:13px;height:13px}
+.back:hover{color:var(--t1);border-color:var(--bd2)}
+.det-hd{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.det-ico{width:48px;height:48px;border-radius:12px;background:var(--bg3);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--t1)}
+.det-ico svg{width:24px;height:24px}
+.det-ttl{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px;letter-spacing:-.3px}
+.det-sub{font-size:12px;color:var(--t2);line-height:1.55}
+.fs{margin-bottom:15px}
+.fl{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);font-family:'DM Mono',monospace;margin-bottom:7px}
+.inp{width:100%;padding:9px 12px;border:1px solid var(--bd2);border-radius:var(--r);background:var(--bg2);color:var(--t1);font-size:12.5px;font-family:'Sora',sans-serif;transition:all .18s;outline:none}
+.inp:focus{border-color:var(--t1);background:var(--bg);box-shadow:0 0 0 3px var(--acsub)}
+.inp::placeholder{color:var(--t4)}
+.dgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.db{border:1px solid var(--bd);border-radius:var(--r);padding:9px 8px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg2)}
+.db:hover{border-color:var(--bd2)}
+.db.sel{background:var(--t1);border-color:var(--t1)}
+.dl{font-size:11px;font-weight:600;margin-bottom:2px;color:var(--t2)}
+.dp{font-size:11.5px;font-weight:600;color:var(--t1);font-family:'DM Mono',monospace}
+.db.sel .dl,.db.sel .dp{color:var(--bg)}
+.qty{display:flex;align-items:center;gap:10px}
+.qb{width:32px;height:32px;border:1px solid var(--bd2);border-radius:var(--r);background:var(--bg2);color:var(--t1);font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .18s;font-weight:300}
+.qb:hover{border-color:var(--t1);background:var(--t1);color:var(--bg)}
+.qv{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;min-width:26px;text-align:center}
+.osum{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:12px;margin-bottom:14px}
+.or{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:12px;border-bottom:1px solid var(--bd)}
+.or:last-child{border-bottom:none}
+.or span:first-child{color:var(--t2)}
+.or span:last-child{font-weight:600;font-family:'DM Mono',monospace;font-size:11.5px}
+.or.tot span:first-child{font-weight:700;color:var(--t1)}
+.or.tot span:last-child{font-size:14px;font-weight:700;color:var(--t1)}
+.btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px 18px;border-radius:var(--r);font-size:13px;font-weight:600;transition:all .2s;cursor:pointer;border:1px solid transparent}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-p{background:var(--t1);color:var(--bg);border-color:var(--t1)}
+.btn-p:hover:not(:disabled){opacity:.85}
+.btn-s{background:transparent;color:var(--t2);border:1px solid var(--bd2)}
+.btn-s:hover:not(:disabled){color:var(--t1);border-color:var(--bd3)}
+.btn svg{width:15px;height:15px;flex-shrink:0}
+.btn-sm{padding:7px 12px;font-size:12px;width:auto;display:inline-flex}
+
+/* ════════════════════════════════════════
+   QRIS SECTION
+════════════════════════════════════════ */
+.qr-sec{display:none;margin-top:14px;animation:slideUp .38s cubic-bezier(.4,0,.2,1)}
+.qr-sec.show{display:block}
+.qr-header{text-align:center;margin-bottom:14px}
+.qr-ttl{font-size:13px;font-weight:700;margin-bottom:3px}
+.qr-amt{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--t1)}
+.qr-wrap{position:relative;width:196px;height:196px;margin:0 auto 16px;border:1px solid var(--bd);border-radius:var(--r2);overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center}
+.qr-ld{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg2)}
+#qr-img{width:180px;height:180px;object-fit:contain;display:none}
+.timer-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:12px}
+.timer-ring-svg{transform:rotate(-90deg)}
+.timer-ring-bg{fill:none;stroke:var(--bd);stroke-width:3}
+.timer-ring-fg{fill:none;stroke:var(--t1);stroke-width:3;stroke-linecap:round;stroke-dasharray:188.4;stroke-dashoffset:0;transition:stroke-dashoffset .9s linear,stroke .4s}
+.timer-txt{font-family:'DM Mono',monospace;font-size:12.5px;font-weight:500;margin-top:-44px;position:relative;z-index:1;color:var(--t1)}
+.timer-lbl{font-size:9.5px;color:var(--t3);letter-spacing:.07em;text-transform:uppercase;font-family:'DM Mono',monospace}
+.txn-box{display:none;background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:9px 11px;margin-bottom:10px;align-items:center;gap:10px}
+.txn-label{font-size:9px;color:var(--t3);font-family:'DM Mono',monospace;letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px}
+.txn-id{font-family:'DM Mono',monospace;font-size:11px;color:var(--t1);word-break:break-all}
+.txn-copy{font-size:9px;padding:3px 8px;border:1px solid var(--bd2);border-radius:4px;cursor:pointer;background:transparent;color:var(--t2);transition:all .15s;flex-shrink:0;font-family:'DM Mono',monospace;font-weight:600}
+.txn-copy:hover{background:var(--t1);color:var(--bg);border-color:var(--t1)}
+.qr-note{text-align:center;font-size:11px;color:var(--t3);margin-bottom:12px;line-height:1.6}
+
+/* ════════════════════════════════════════
+   SUCCESS OVERLAY
+════════════════════════════════════════ */
+.sov{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:20px}
+.sov.show{display:flex}
+.sc{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r3);padding:28px;width:100%;max-width:400px;text-align:center;animation:popIn .38s cubic-bezier(.34,1.56,.64,1)}
+.s-ic{width:52px;height:52px;border-radius:13px;background:var(--greenb);border:1px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--green)}
+.s-ic svg{width:26px;height:26px}
+.s-ttl{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:700;margin-bottom:5px}
+.s-sub{font-size:12px;color:var(--t2);margin-bottom:18px}
+.a-box{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r);padding:11px;text-align:left;margin-bottom:14px}
+.a-row{display:flex;justify-content:space-between;align-items:flex-start;padding:5px 0;font-size:12px;gap:10px}
+.a-row:not(:last-child){border-bottom:1px solid var(--bd)}
+.a-k{color:var(--t3);flex-shrink:0;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.04em}
+.a-v{font-weight:600;font-family:'DM Mono',monospace;font-size:11px;text-align:right;word-break:break-all}
+.cpbtn{font-size:9px;padding:2px 7px;border:1px solid var(--bd2);border-radius:4px;cursor:pointer;background:transparent;color:var(--t2);transition:all .15s;flex-shrink:0;font-family:'DM Mono',monospace;font-weight:600}
+.cpbtn:hover{background:var(--t1);color:var(--bg);border-color:var(--t1)}
+
+/* ════════════════════════════════════════
+   MODAL
+════════════════════════════════════════ */
+.mov{display:none;position:fixed;inset:0;z-index:150;background:rgba(0,0,0,.4);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px}
+.mov.show{display:flex}
+.modal{background:var(--bg);border:1px solid var(--bd);border-radius:var(--r3);padding:22px;width:100%;max-width:380px;animation:popIn .3s cubic-bezier(.34,1.56,.64,1);position:relative}
+.m-ttl{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:700;margin-bottom:4px}
+.m-sub{font-size:12px;color:var(--t2);margin-bottom:14px;line-height:1.6}
+.m-close{position:absolute;top:14px;right:14px;width:26px;height:26px;border:1px solid var(--bd);border-radius:6px;background:transparent;color:var(--t2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s}
+.m-close:hover{border-color:var(--red);color:var(--red)}
+.m-close svg{width:13px;height:13px}
+.m-gap{margin-top:10px}
+
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--bg);color:var(--t1);padding:10px 14px;border-radius:var(--r);font-size:12px;font-weight:600;z-index:300;animation:toastIn .28s cubic-bezier(.4,0,.2,1);box-shadow:var(--shadowl);display:flex;align-items:center;gap:7px;max-width:300px;border:1px solid var(--bd);font-family:'DM Mono',monospace}
+.toast svg{width:13px;height:13px;flex-shrink:0}
+.toast.err{background:var(--redb);border-color:var(--red);color:var(--red)}
+.toast.ok{background:var(--greenb);border-color:var(--green);color:var(--green)}
+.toast.warn{background:var(--yellowb);border-color:var(--yellow);color:var(--yellow)}
+
+/* ════════════════════════════════════════
+   LOADER
+════════════════════════════════════════ */
+.ld{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.2);border-top-color:currentColor;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+.ld.dk{border-color:var(--bd3);border-top-color:var(--t1)}
+
+/* ════════════════════════════════════════
+   ADMIN PAGE
+════════════════════════════════════════ */
+.adm{padding:24px 28px}
+.adm-ttl{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px}
+.adm-sub{font-size:12px;color:var(--t2);margin-bottom:22px}
+/* Stats cards */
+.adm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
+.adm-stat{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r2);padding:14px;transition:all .2s}
+.adm-stat-val{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:700;color:var(--t1);margin-bottom:3px}
+.adm-stat-lbl{font-size:10px;color:var(--t3);font-family:'DM Mono',monospace;letter-spacing:.07em;text-transform:uppercase}
+.adm-stat-delta{font-size:10.5px;font-family:'DM Mono',monospace;margin-top:4px}
+.adm-stat-delta.up{color:var(--green)}
+.adm-stat-delta.dn{color:var(--red)}
+/* Chart area */
+.adm-chart{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r2);padding:16px;margin-bottom:20px}
+.adm-chart-ttl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);font-family:'DM Mono',monospace;margin-bottom:14px}
+.chart-bars{display:flex;align-items:flex-end;gap:6px;height:100px}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.bar{width:100%;background:var(--bg4);border-radius:3px 3px 0 0;transition:height .5s cubic-bezier(.4,0,.2,1),background .25s;cursor:pointer;position:relative}
+.bar:hover{background:var(--t1)}
+.bar-lbl{font-size:9px;color:var(--t3);font-family:'DM Mono',monospace}
+/* Table */
+.adm-table-wrap{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r2);overflow:hidden;margin-bottom:20px}
+.adm-table-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--bd)}
+.adm-table-ttl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);font-family:'DM Mono',monospace}
+table{width:100%;border-collapse:collapse}
+th{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);font-family:'DM Mono',monospace;padding:8px 14px;text-align:left;border-bottom:1px solid var(--bd)}
+td{font-size:12px;padding:10px 14px;border-bottom:1px solid var(--bd);color:var(--t1)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bgc)}
+.td-name{font-weight:600}
+.td-cat{font-size:9.5px;font-family:'DM Mono',monospace;color:var(--t3)}
+.td-stock{font-family:'DM Mono',monospace;font-size:12px}
+.td-stock.low{color:var(--red);font-weight:700}
+.td-price{font-family:'DM Mono',monospace;font-size:11.5px}
+.td-actions{display:flex;gap:5px;align-items:center}
+.act-btn{padding:4px 9px;border-radius:5px;font-size:10px;font-weight:600;cursor:pointer;transition:all .15s;font-family:'DM Mono',monospace;border:1px solid transparent;display:flex;align-items:center;gap:4px}
+.act-btn svg{width:11px;height:11px}
+.act-btn.plus{background:var(--greenb);color:var(--green);border-color:var(--green)}
+.act-btn.plus:hover{background:var(--green);color:#fff}
+.act-btn.minus{background:var(--redb);color:var(--red);border-color:var(--red)}
+.act-btn.minus:hover{background:var(--red);color:#fff}
+.act-btn.edit{background:var(--blueb);color:var(--blue);border-color:var(--blue)}
+.act-btn.edit:hover{background:var(--blue);color:#fff}
+/* Add product form */
+.adm-form{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r2);padding:18px;margin-bottom:20px}
+.adm-form-ttl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);font-family:'DM Mono',monospace;margin-bottom:14px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-grid .fs{margin-bottom:0}
+.inp-sm{padding:7px 10px;font-size:12px}
+select.inp{appearance:none;cursor:pointer}
+/* Login wall */
+.adm-login{display:flex;align-items:center;justify-content:center;min-height:60vh}
+.adm-login-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--r3);padding:28px;width:100%;max-width:340px;text-align:center}
+.adm-login-ttl{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:700;margin-bottom:5px}
+.adm-login-sub{font-size:12px;color:var(--t2);margin-bottom:18px}
+
+/* ════════════════════════════════════════
+   STOCK BADGE
+════════════════════════════════════════ */
+.stock-badge{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:600;padding:2px 7px;border-radius:20px;font-family:'DM Mono',monospace}
+.stock-badge.available{background:var(--greenb);color:var(--green)}
+.stock-badge.low{background:var(--yellowb);color:var(--yellow)}
+.stock-badge.empty{background:var(--redb);color:var(--red)}
+
+/* ════════════════════════════════════════
+   KEYFRAMES
+════════════════════════════════════════ */
+@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes toastIn{from{opacity:0;transform:translateX(50px) scale(.95)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes enterItem{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:enterItem .38s cubic-bezier(.4,0,.2,1) both}
+.d1{animation-delay:.04s}.d2{animation-delay:.09s}.d3{animation-delay:.14s}.d4{animation-delay:.19s}.d5{animation-delay:.25s}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:900px){
+  .adm-stats{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  :root{--sw:0px}
+  .sb{transform:translateX(-262px);width:262px;background:var(--bg)}
+  .sb.open{transform:translateX(0);box-shadow:6px 0 30px rgba(0,0,0,.15)}
+  .main{margin-left:0}
+  .hbg{display:flex}
+  .hd-nav{display:none}
+  .theme-sw .theme-sw-lbl{display:none}
+  .hero,.ct,.det,.ft,.adm{padding-left:16px;padding-right:16px}
+  .dgrid{grid-template-columns:repeat(2,1fr)}
+  .cgrid{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:repeat(auto-fill,minmax(155px,1fr))}
+  .stats{width:100%}
+  .stat{flex:1;min-width:60px;padding:9px 10px}
+  .adm-stats{grid-template-columns:1fr 1fr}
+  .form-grid{grid-template-columns:1fr}
+  table th:nth-child(3),table td:nth-child(3),
+  table th:nth-child(4),table td:nth-child(4){display:none}
+}
+@media(max-width:480px){
+  .pgrid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:24px}
+  .adm-stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ HEADER ════════════ -->
+<header class="hd">
+  <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+  <div class="logo" onclick="goHome()">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </div>
+    <div class="logo-text">SEONS<span>PREMS</span></div>
+    <div class="logo-badge">STORE</div>
+  </div>
+  <nav class="hd-nav">
+    <a onclick="navTo('products')">Produk</a>
+    <a onclick="navTo('testi')">Testimoni</a>
+    <a onclick="navTo('faq')">FAQ</a>
+    <a onclick="navTo('contact')">Kontak</a>
+  </nav>
+  <div class="hd-actions">
+    <!-- Theme Toggle -->
+    <div class="theme-sw" onclick="toggleTheme()" id="theme-sw" title="Ganti tema">
+      <div class="theme-sw-track"><div class="theme-sw-thumb"></div></div>
+      <span class="theme-sw-lbl" id="theme-lbl">LIGHT</span>
+    </div>
+    <!-- Config -->
+    <button class="icon-btn" onclick="openConfig()" title="Konfigurasi API">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ════════════ SIDEBAR ════════════ -->
+<aside class="sb" id="sb">
+  <div class="sb-ttl">Navigasi</div>
+  <ul class="sb-menu">
+    <li><a onclick="goHome()" id="nav-home" class="act"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Home</a></li>
+    <li><a onclick="navTo('products')"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>Produk</a></li>
+    <li><a onclick="navTo('testi')"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>Testimoni</a></li>
+    <li><a onclick="navTo('faq')"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>FAQ</a></li>
+    <li><a onclick="navTo('contact')"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>Kontak</a></li>
+  </ul>
+  <div class="sb-div"></div>
+  <div class="sb-ttl">Kategori</div>
+  <ul class="sb-menu" id="sb-cats">
+    <li><a onclick="fcat('all')" data-cat="all" class="act"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg></span>Semua<span class="sb-chip" id="chip-all">…</span></a></li>
+    <li><a onclick="fcat('streaming')" data-cat="streaming"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>Streaming<span class="sb-chip" id="chip-streaming">…</span></a></li>
+    <li><a onclick="fcat('music')" data-cat="music"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/></svg></span>Music<span class="sb-chip" id="chip-music">…</span></a></li>
+    <li><a onclick="fcat('productivity')" data-cat="productivity"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg></span>Productivity<span class="sb-chip" id="chip-productivity">…</span></a></li>
+    <li><a onclick="fcat('ai')" data-cat="ai"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M8 12l-4 8h16l-4-8"/></svg></span>AI Tools<span class="sb-chip" id="chip-ai">…</span></a></li>
+  </ul>
+  <div class="sb-div"></div>
+  <div class="sb-ttl">Jaminan</div>
+  <ul class="sb-menu">
+    <li><a style="cursor:default"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>Pengiriman Instan</a></li>
+    <li><a style="cursor:default"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>Pembayaran Aman</a></li>
+    <li><a style="cursor:default"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Garansi Penuh</a></li>
+  </ul>
+  <div class="sb-div"></div>
+  <div class="sb-ttl">Lainnya</div>
+  <ul class="sb-menu">
+    <li><a onclick="openAdmin()" id="nav-admin"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>Admin Panel<span class="sb-admin-badge">ADMIN</span></a></li>
+  </ul>
+</aside>
+
+<!-- ════════════ MAIN ════════════ -->
+<div class="wrap">
+<div class="main">
+
+<!-- ══ HOME PAGE ══ -->
+<div class="pg act" id="pg-home">
+  <!-- Ticker -->
+  <div class="ticker">
+    <div class="t-lbl">LIVE</div>
+    <div style="overflow:hidden;flex:1;position:relative">
+      <div class="t-track" id="ticker-track">
+        <span class="t-item">Selamat datang di SeonsPrems — Premium Digital Accounts Store</span>
+        <span class="t-item">Pengiriman otomatis dalam hitungan detik setelah pembayaran dikonfirmasi</span>
+        <span class="t-item">Tersedia · Spotify · Netflix · YouTube · Disney+ · Canva Pro · ChatGPT Plus · Claude Pro</span>
+        <span class="t-item">Pembayaran via QRIS — GoPay · OVO · DANA · ShopeePay · Mobile Banking</span>
+        <span class="t-item">Support 24/7 via WhatsApp — Respon cepat, solusi tepat</span>
+        <!-- duplicate for infinite scroll -->
+        <span class="t-item">Selamat datang di SeonsPrems — Premium Digital Accounts Store</span>
+        <span class="t-item">Pengiriman otomatis dalam hitungan detik setelah pembayaran dikonfirmasi</span>
+        <span class="t-item">Tersedia · Spotify · Netflix · YouTube · Disney+ · Canva Pro · ChatGPT Plus · Claude Pro</span>
+        <span class="t-item">Pembayaran via QRIS — GoPay · OVO · DANA · ShopeePay · Mobile Banking</span>
+        <span class="t-item">Support 24/7 via WhatsApp — Respon cepat, solusi tepat</span>
+      </div>
+    </div>
+  </div>
+  <!-- Hero -->
+  <div class="hero anim">
+    <div class="badge"><span class="badge-dot"></span>Online &amp; Siap Melayani</div>
+    <h1>PREMIUM DIGITAL<br>ACCOUNTS STORE</h1>
+    <p>Dapatkan akun premium berkualitas tinggi dengan harga terjangkau. Pengiriman instan otomatis, garansi penuh, support 24/7.</p>
+    <div class="stats anim d2" id="hero-stats">
+      <div class="stat"><div class="stat-n" id="stat-customers">…</div><div class="stat-l">Customers</div></div>
+      <div class="stat"><div class="stat-n">99%</div><div class="stat-l">Satisfied</div></div>
+      <div class="stat"><div class="stat-n">&lt;1s</div><div class="stat-l">Delivery</div></div>
+      <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Support</div></div>
+    </div>
+  </div>
+  <!-- Content -->
+  <div class="ct">
+    <div id="products">
+      <div class="s-hd anim d1"><div class="s-ttl">Kategori Produk</div></div>
+      <div class="cats anim d2" id="cats-bar">
+        <button class="cat act" onclick="fcat('all')" data-c="all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>Semua</button>
+        <button class="cat" onclick="fcat('streaming')" data-c="streaming"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>Streaming</button>
+        <button class="cat" onclick="fcat('music')" data-c="music"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/></svg>Music</button>
+        <button class="cat" onclick="fcat('productivity')" data-c="productivity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg>Productivity</button>
+        <button class="cat" onclick="fcat('ai')" data-c="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M8 12l-4 8h16l-4-8"/></svg>AI Tools</button>
+      </div>
+      <div class="s-hd anim d2">
+        <div class="s-ttl">Produk Tersedia</div>
+        <span class="s-ct" id="pct"></span>
+      </div>
+      <div class="pgrid" id="pgrid">
+        <div class="pc skel" style="height:155px"></div>
+        <div class="pc skel" style="height:155px;animation-delay:.1s"></div>
+        <div class="pc skel" style="height:155px;animation-delay:.2s"></div>
+        <div class="pc skel" style="height:155px;animation-delay:.3s"></div>
+      </div>
+    </div>
+    <div class="div"></div>
+    <div id="testi">
+      <div class="s-hd anim"><div class="s-ttl">Testimoni Pelanggan</div></div>
+      <div class="tslider-wrap anim">
+        <div class="tslider"><div class="ttrack" id="ttrack"></div></div>
+        <div class="tslider-nav">
+          <button onclick="tPrev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <div class="tslider-dots" id="tdots"></div>
+          <button onclick="tNext()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="div"></div>
+    <div id="faq">
+      <div class="s-hd anim"><div class="s-ttl">Pertanyaan Umum</div></div>
+      <div class="flist" id="flist"></div>
+    </div>
+    <div class="div"></div>
+    <div id="contact">
+      <div class="s-hd anim"><div class="s-ttl">Hubungi Kami</div></div>
+      <div class="cgrid anim" id="contact-grid"></div>
+    </div>
+  </div>
+  <footer class="ft">
+    <div class="ft-logo">SEONS<span>PREMS</span></div>
+    <div class="ft-txt">© 2025 SeonsPrems · Harga dapat berubah sewaktu-waktu</div>
+  </footer>
+</div><!-- /pg-home -->
+
+<!-- ══ PRODUCT DETAIL ══ -->
+<div class="pg" id="pg-det">
+  <div class="det">
+    <button class="back" onclick="goHome()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>Kembali
+    </button>
+    <div class="det-hd anim">
+      <div class="det-ico" id="d-ico"></div>
+      <div><div class="det-ttl" id="d-ttl"></div><div class="det-sub" id="d-sub"></div></div>
+    </div>
+    <div class="fs anim d1">
+      <label class="fl">Durasi Berlangganan</label>
+      <div class="dgrid" id="dur-grid"></div>
+    </div>
+    <div class="fs anim d2">
+      <label class="fl">Jumlah Akun</label>
+      <div class="qty">
+        <button class="qb" onclick="chqty(-1)">−</button>
+        <div class="qv" id="qty-v">1</div>
+        <button class="qb" onclick="chqty(1)">+</button>
+      </div>
+    </div>
+    <div class="fs anim d3">
+      <label class="fl">Alamat Email</label>
+      <input type="email" class="inp" id="inp-email" placeholder="Email aktif kamu...">
+    </div>
+    <div class="fs anim d4">
+      <label class="fl">Nomor WhatsApp</label>
+      <input type="tel" class="inp" id="inp-wa" placeholder="Contoh: 08123456789">
+    </div>
+    <div class="osum anim d5">
+      <div class="or"><span>Produk</span><span id="s-prod">—</span></div>
+      <div class="or"><span>Durasi</span><span id="s-dur">—</span></div>
+      <div class="or"><span>Jumlah Akun</span><span id="s-qty">1 akun</span></div>
+      <div class="or tot"><span>Total Bayar</span><span id="s-tot">—</span></div>
+    </div>
+    <button class="btn btn-p" id="pay-btn" onclick="doPayment()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <span>Bayar via QRIS</span>
+    </button>
+    <!-- QRIS Section -->
+    <div class="qr-sec" id="qr-sec">
+      <div class="qr-header">
+        <div class="qr-ttl">Scan QRIS untuk Membayar</div>
+        <div class="qr-amt" id="qr-amt"></div>
+      </div>
+      <div class="qr-wrap" id="qr-wrap">
+        <div class="qr-ld" id="qr-ld"><span class="ld dk"></span></div>
+        <img id="qr-img" src="" alt="QR Code">
+      </div>
+      <div class="timer-wrap">
+        <svg class="timer-ring-svg" width="62" height="62" viewBox="0 0 62 62">
+          <circle class="timer-ring-bg" cx="31" cy="31" r="28"/>
+          <circle class="timer-ring-fg" id="timer-ring" cx="31" cy="31" r="28"/>
+        </svg>
+        <div class="timer-txt" id="timer-txt">05:00</div>
+        <div class="timer-lbl">Sisa Waktu</div>
+      </div>
+      <div class="txn-box" id="txn-box">
+        <div style="flex:1;min-width:0">
+          <div class="txn-label">ID Transaksi</div>
+          <div class="txn-id" id="txn-id-display">—</div>
+        </div>
+        <button class="txn-copy" onclick="copyTxnId()">SALIN</button>
+      </div>
+      <div class="qr-note">Scan dengan GoPay · OVO · DANA · ShopeePay<br>atau mobile banking yang mendukung QRIS</div>
+      <button class="btn btn-s" id="chk-btn" onclick="checkPay()" style="margin-top:6px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span>Cek Status Pembayaran</span>
+      </button>
+    </div>
+  </div>
+</div><!-- /pg-det -->
+
+<!-- ══ ADMIN PAGE ══ -->
+<div class="pg" id="pg-admin">
+  <!-- Login wall -->
+  <div class="adm-login" id="adm-login-wall">
+    <div class="adm-login-card">
+      <div style="width:44px;height:44px;border-radius:11px;background:var(--bg3);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:var(--t1)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <div class="adm-login-ttl">Admin Panel</div>
+      <div class="adm-login-sub">Masukkan password admin untuk mengakses panel pengelolaan toko.</div>
+      <div class="fs">
+        <label class="fl">Password Admin</label>
+        <input type="password" class="inp" id="adm-pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')doAdminLogin()">
+      </div>
+      <button class="btn btn-p" onclick="doAdminLogin()" style="margin-top:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <span>Masuk Admin</span>
+      </button>
+    </div>
+  </div>
+  <!-- Admin Dashboard -->
+  <div class="adm" id="adm-dashboard" style="display:none">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px">
+      <div>
+        <div class="adm-ttl">Admin Panel</div>
+        <div class="adm-sub">Kelola produk, stok, dan lihat statistik toko.</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-s btn-sm" onclick="adminLogout()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Logout
+        </button>
+        <button class="btn btn-p btn-sm" onclick="openAddProd()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Tambah Produk
+        </button>
+      </div>
+    </div>
+    <!-- Stats -->
+    <div class="adm-stats" id="adm-stats">
+      <div class="adm-stat"><div class="adm-stat-val" id="astat-prod">0</div><div class="adm-stat-lbl">Total Produk</div></div>
+      <div class="adm-stat"><div class="adm-stat-val" id="astat-orders">0</div><div class="adm-stat-lbl">Total Pesanan</div></div>
+      <div class="adm-stat"><div class="adm-stat-val" id="astat-rev">Rp 0</div><div class="adm-stat-lbl">Total Revenue</div></div>
+      <div class="adm-stat"><div class="adm-stat-val" id="astat-low">0</div><div class="adm-stat-lbl">Stok Rendah</div><div class="adm-stat-delta dn" id="astat-low-lbl"></div></div>
+    </div>
+    <!-- Chart -->
+    <div class="adm-chart">
+      <div class="adm-chart-ttl">Penjualan per Produk (Bulan Ini)</div>
+      <div class="chart-bars" id="adm-chart"></div>
+    </div>
+    <!-- Products Table -->
+    <div class="adm-table-wrap">
+      <div class="adm-table-hd">
+        <div class="adm-table-ttl">Daftar Produk</div>
+        <button class="btn btn-s btn-sm" onclick="loadAdminProds()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>Refresh
+        </button>
+      </div>
+      <div style="overflow-x:auto">
+        <table id="adm-table">
+          <thead>
+            <tr>
+              <th>Produk</th>
+              <th>Kategori</th>
+              <th>Harga Mulai</th>
+              <th>Stok</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="adm-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Orders Table -->
+    <div class="adm-table-wrap">
+      <div class="adm-table-hd">
+        <div class="adm-table-ttl">Riwayat Pesanan</div>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>ID Transaksi</th>
+              <th>Produk</th>
+              <th>Email</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Waktu</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody">
+            <tr><td colspan="6" style="text-align:center;color:var(--t3);padding:20px;font-size:11px;font-family:'DM Mono',monospace">Memuat riwayat pesanan...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Supabase SQL -->
+    <div class="adm-form">
+      <div class="adm-form-ttl">Setup Database Supabase</div>
+      <p style="font-size:12px;color:var(--t2);margin-bottom:12px;line-height:1.7">Jalankan SQL berikut di Supabase SQL Editor untuk membuat tabel yang diperlukan:</p>
+      <div style="background:var(--bg3);border:1px solid var(--bd);border-radius:var(--r);padding:12px;font-family:'DM Mono',monospace;font-size:10.5px;color:var(--t2);line-height:1.75;white-space:pre-wrap;overflow-x:auto;max-height:280px;overflow-y:auto" id="sql-display"></div>
+      <button class="btn btn-s btn-sm" onclick="copySQL()" style="margin-top:10px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Salin SQL
+      </button>
+    </div>
+  </div>
+</div><!-- /pg-admin -->
+
+</div><!-- /main -->
+</div><!-- /wrap -->
+
+<!-- SUCCESS OVERLAY -->
+<div class="sov" id="sov">
+  <div class="sc">
+    <div class="s-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div class="s-ttl">Pembayaran Berhasil!</div>
+    <div class="s-sub">Akun premium kamu siap digunakan</div>
+    <div class="a-box" id="a-box"></div>
+    <button class="btn btn-p" onclick="closeSuc()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Selesai</span>
+    </button>
+  </div>
+</div>
+
+<!-- ADD PRODUCT MODAL -->
+<div class="mov" id="add-prod-modal">
+  <div class="modal">
+    <button class="m-close" onclick="document.getElementById('add-prod-modal').classList.remove('show')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="m-ttl" id="aprod-title">Tambah Produk</div>
+    <div class="m-sub">Isi informasi produk yang akan ditambahkan ke toko.</div>
+    <input type="hidden" id="edit-prod-id">
+    <div class="form-grid">
+      <div class="fs"><label class="fl">Nama Produk</label><input class="inp inp-sm" id="p-name-inp" placeholder="Spotify Premium"></div>
+      <div class="fs"><label class="fl">Kategori</label>
+        <select class="inp inp-sm" id="p-cat-inp">
+          <option value="streaming">Streaming</option>
+          <option value="music">Music</option>
+          <option value="productivity">Productivity</option>
+          <option value="ai">AI Tools</option>
+        </select>
+      </div>
+    </div>
+    <div class="fs m-gap"><label class="fl">Deskripsi</label><input class="inp inp-sm" id="p-desc-inp" placeholder="Deskripsi singkat produk..."></div>
+    <div class="form-grid m-gap">
+      <div class="fs"><label class="fl">Harga 1 Bulan (Rp)</label><input class="inp inp-sm" type="number" id="p-p1-inp" placeholder="8000"></div>
+      <div class="fs"><label class="fl">Harga 3 Bulan (Rp)</label><input class="inp inp-sm" type="number" id="p-p3-inp" placeholder="22000"></div>
+      <div class="fs"><label class="fl">Harga 6 Bulan (Rp)</label><input class="inp inp-sm" type="number" id="p-p6-inp" placeholder="40000"></div>
+      <div class="fs"><label class="fl">Harga 1 Tahun (Rp)</label><input class="inp inp-sm" type="number" id="p-p12-inp" placeholder="75000"></div>
+    </div>
+    <div class="form-grid m-gap">
+      <div class="fs"><label class="fl">Stok</label><input class="inp inp-sm" type="number" id="p-stock-inp" placeholder="100"></div>
+      <div class="fs"><label class="fl">Badge</label>
+        <select class="inp inp-sm" id="p-badge-inp">
+          <option value="">Tidak ada</option>
+          <option value="hot">HOT</option>
+          <option value="new">NEW</option>
+          <option value="sale">SALE</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="btn btn-s" onclick="document.getElementById('add-prod-modal').classList.remove('show')" style="flex:1">Batal</button>
+      <button class="btn btn-p" onclick="saveProd()" style="flex:2" id="save-prod-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+        <span>Simpan</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- STOCK MODAL -->
+<div class="mov" id="stock-modal">
+  <div class="modal">
+    <button class="m-close" onclick="document.getElementById('stock-modal').classList.remove('show')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="m-ttl">Update Stok</div>
+    <div class="m-sub" id="stock-prod-name">Produk —</div>
+    <input type="hidden" id="stock-prod-id">
+    <div class="fs">
+      <label class="fl">Stok Saat Ini</label>
+      <input class="inp" type="number" id="stock-inp" placeholder="0" min="0">
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="btn btn-s" onclick="document.getElementById('stock-modal').classList.remove('show')" style="flex:1">Batal</button>
+      <button class="btn btn-p" onclick="saveStock()" style="flex:2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/></svg>
+        <span>Update Stok</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIG MODAL -->
+<div class="mov" id="cfg-modal">
+  <div class="modal">
+    <button class="m-close" onclick="closeCfg()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="m-ttl">Konfigurasi API</div>
+    <div class="m-sub">Atur API Key Tako (api.neoxr.eu) dan koneksi Supabase. Konfigurasi disimpan di browser kamu.</div>
+    <div class="fs">
+      <label class="fl">Tako API Key (api.neoxr.eu)</label>
+      <input type="text" class="inp" id="mk-inp" placeholder="Masukkan API key Tako...">
+    </div>
+    <div class="fs m-gap">
+      <label class="fl">Username Tako (neoxr)</label>
+      <input type="text" class="inp" id="tako-user-inp" placeholder="username kamu di neoxr">
+    </div>
+    <div class="fs m-gap">
+      <label class="fl">Supabase Project URL</label>
+      <input type="text" class="inp" id="sb-url-inp" placeholder="https://xxxx.supabase.co">
+    </div>
+    <div class="fs m-gap">
+      <label class="fl">Supabase Anon Key</label>
+      <input type="text" class="inp" id="sb-key-inp" placeholder="eyJhbGc...">
+    </div>
+    <div class="fs m-gap">
+      <label class="fl">Password Admin (untuk /admin)</label>
+      <input type="password" class="inp" id="adm-pw-cfg" placeholder="••••••••">
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="btn btn-s" onclick="closeCfg()" style="flex:1">Batal</button>
+      <button class="btn btn-p" onclick="saveCfg()" style="flex:2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+        <span>Simpan Konfigurasi</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════
+   CONFIG
+════════════════════════════════════════ */
+const CFG = {
+  get APIKEY(){ return localStorage.getItem('neo_mk') || '' },
+  get TAKO_USER(){ return localStorage.getItem('tako_user') || '' },
+  get SUPABASE_URL(){ return localStorage.getItem('sb_url') || '' },
+  get SUPABASE_KEY(){ return localStorage.getItem('sb_key') || '' },
+  get ADMIN_PW(){ return localStorage.getItem('adm_pw') || 'admin123' },
+};
+
+/* ════════════════════════════════════════
+   SUPABASE CLIENT (no SDK)
+════════════════════════════════════════ */
+const SB = {
+  _headers(extra={}) {
+    return {
+      'apikey': CFG.SUPABASE_KEY,
+      'Authorization': `Bearer ${CFG.SUPABASE_KEY}`,
+      'Content-Type': 'application/json',
+      ...extra
+    };
+  },
+  async get(table, params='') {
+    if (!CFG.SUPABASE_URL || !CFG.SUPABASE_KEY) return null;
+    try {
+      const r = await fetch(`${CFG.SUPABASE_URL}/rest/v1/${table}?${params}`, { headers: this._headers() });
+      if (!r.ok) { console.error('SB.get error', await r.text()); return null; }
+      return r.json();
+    } catch(e) { console.error('SB.get fetch error', e); return null; }
+  },
+  async post(table, data) {
+    if (!CFG.SUPABASE_URL || !CFG.SUPABASE_KEY) return null;
+    try {
+      const r = await fetch(`${CFG.SUPABASE_URL}/rest/v1/${table}`, {
+        method: 'POST',
+        headers: this._headers({ Prefer: 'return=representation' }),
+        body: JSON.stringify(data)
+      });
+      if (!r.ok) { console.error('SB.post error', await r.text()); return null; }
+      return r.json();
+    } catch(e) { console.error('SB.post fetch error', e); return null; }
+  },
+  async patch(table, id, data) {
+    if (!CFG.SUPABASE_URL || !CFG.SUPABASE_KEY) return null;
+    try {
+      const r = await fetch(`${CFG.SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
+        method: 'PATCH',
+        headers: this._headers({ Prefer: 'return=representation' }),
+        body: JSON.stringify(data)
+      });
+      if (!r.ok) { console.error('SB.patch error', await r.text()); return null; }
+      return r.json();
+    } catch(e) { console.error('SB.patch fetch error', e); return null; }
+  },
+  async delete(table, id) {
+    if (!CFG.SUPABASE_URL || !CFG.SUPABASE_KEY) return null;
+    try {
+      const r = await fetch(`${CFG.SUPABASE_URL}/rest/v1/${table}?id=eq.${id}`, {
+        method: 'DELETE',
+        headers: this._headers()
+      });
+      return r.ok;
+    } catch(e) { console.error('SB.delete fetch error', e); return false; }
+  }
+};
+
+/* ════════════════════════════════════════
+   TAKO API (api.neoxr.eu)
+   Endpoint: POST https://api.neoxr.eu/api/tako
+   Create:  { apikey, amount, username, type:'create' }
+   Status:  { apikey, id, type:'status' }
+════════════════════════════════════════ */
+const TAKO = {
+  BASE: 'https://api.neoxr.eu/api/tako',
+  async create(amount) {
+    if (!CFG.APIKEY) throw new Error('API Key belum diset. Klik ikon ⚙️ untuk mengatur.');
+    const body = {
+      apikey: CFG.APIKEY,
+      amount: amount,
+      username: CFG.TAKO_USER || 'user',
+      type: 'create'
+    };
+    const r = await fetch(this.BASE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const data = await r.json();
+    if (!r.ok || !data.status) throw new Error(data.message || data.msg || 'Gagal membuat pembayaran');
+    return data;
+  },
+  async status(id) {
+    if (!CFG.APIKEY) throw new Error('API Key belum diset.');
+    const body = {
+      apikey: CFG.APIKEY,
+      id: id,
+      type: 'status'
+    };
+    const r = await fetch(this.BASE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.message || data.msg || 'Gagal cek status');
+    return data;
+  }
+};
+
+/* ════════════════════════════════════════
+   FALLBACK DATA
+════════════════════════════════════════ */
+const FALLBACK_PRODS = [
+  {id:'spotify',  name:'Spotify Premium',  icon:'music', desc:'Musik tanpa iklan, download offline, kualitas Ultra HD.', cat:'music',        bdg:'hot',  stock:50,  prices:{json:{'1 Bulan':8000,'3 Bulan':22000,'6 Bulan':40000,'1 Tahun':75000}}},
+  {id:'netflix',  name:'Netflix Premium',  icon:'video', desc:'Stream film & series 4K, akses semua konten tanpa batas.', cat:'streaming',   bdg:'hot',  stock:30,  prices:{json:{'1 Bulan':15000,'3 Bulan':42000,'6 Bulan':80000,'1 Tahun':150000}}},
+  {id:'youtube',  name:'YouTube Premium',  icon:'youtube',desc:'Tanpa iklan, background play, YouTube Music gratis.',     cat:'streaming',   bdg:null,   stock:40,  prices:{json:{'1 Bulan':7000,'3 Bulan':19000,'6 Bulan':35000,'1 Tahun':65000}}},
+  {id:'disney',   name:'Disney+ Hotstar',  icon:'star',  desc:'Marvel, Star Wars, Disney, Pixar & ribuan konten.', cat:'streaming',          bdg:'new',  stock:25,  prices:{json:{'1 Bulan':9000,'3 Bulan':25000,'6 Bulan':45000,'1 Tahun':85000}}},
+  {id:'canva',    name:'Canva Pro',         icon:'pen',   desc:'100M+ aset premium, Magic AI, background remover.',  cat:'productivity',     bdg:'sale', stock:60,  prices:{json:{'1 Bulan':12000,'3 Bulan':33000,'6 Bulan':60000,'1 Tahun':110000}}},
+  {id:'chatgpt',  name:'ChatGPT Plus',      icon:'bot',   desc:'GPT-4o, DALL·E 3, browsing real-time, plugins.', cat:'ai',                   bdg:'hot',  stock:20,  prices:{json:{'1 Bulan':120000,'3 Bulan':330000,'6 Bulan':600000,'1 Tahun':1100000}}},
+  {id:'capcut',   name:'CapCut Pro',        icon:'film',  desc:'Edit video profesional, template premium, no watermark.', cat:'productivity',bdg:'new',  stock:45,  prices:{json:{'1 Bulan':10000,'3 Bulan':28000,'6 Bulan':52000,'1 Tahun':95000}}},
+  {id:'claude',   name:'Claude Pro',        icon:'zap',   desc:'Claude Sonnet & Opus, unlimited messages, Priority.',   cat:'ai',            bdg:'new',  stock:15,  prices:{json:{'1 Bulan':130000,'3 Bulan':360000,'6 Bulan':660000,'1 Tahun':1200000}}},
+];
+
+const FALLBACK_TESTI = [
+  {name:'Rizky A.',product:'Spotify Premium',rating:5,message:'Mantap banget! Akun langsung aktif dalam hitungan detik. Harga murah tapi kualitas premium. Auto repeat order!'},
+  {name:'Dewi S.',product:'Netflix Premium',rating:5,message:'Sudah 4 bulan langganan, nggak pernah ada masalah. Akun stabil, CS fast response. Terbaik!'},
+  {name:'Andi P.',product:'ChatGPT Plus',rating:5,message:'Harga jauh lebih murah dari official, tapi akun beneran bisa dipakai GPT-4o. Puas banget!'},
+  {name:'Sari M.',product:'Canva Pro',rating:4,message:'Proses cepat, akun langsung bisa digunakan. Template premium semua unlocked. Worth it!'},
+  {name:'Budi K.',product:'YouTube Premium',rating:5,message:'Akhirnya nonton YouTube tanpa iklan! Pengiriman super cepat, recommended!'},
+];
+
+const FALLBACK_FAQS = [
+  {question:'Berapa lama akun dikirim setelah pembayaran?',answer:'Akun dikirim otomatis dalam hitungan detik setelah pembayaran QRIS terkonfirmasi. Sistem bekerja 24/7 tanpa proses manual.'},
+  {question:'Apakah akun yang diberikan aman dan original?',answer:'Ya, semua akun adalah akun premium resmi yang aman. Kami memberikan garansi selama masa berlangganan dan siap mengganti jika ada masalah.'},
+  {question:'Apa yang terjadi jika akun bermasalah?',answer:'Kami memberikan garansi penuh selama masa berlangganan. Hubungi support via WhatsApp dan kami akan menyelesaikan dalam 1x24 jam.'},
+  {question:'Metode pembayaran apa saja yang diterima?',answer:'Kami menerima pembayaran via QRIS yang mendukung GoPay, OVO, DANA, ShopeePay, dan semua mobile banking yang sudah mendukung QRIS.'},
+  {question:'Bisakah membeli untuk lebih dari 1 akun?',answer:'Ya, kamu bisa memilih jumlah akun sesuai kebutuhan. Harga akan dikalkulasi otomatis berdasarkan jumlah yang dipilih.'},
+];
+
+/* ════════════════════════════════════════
+   SUPABASE SQL SCHEMA
+════════════════════════════════════════ */
+const SUPABASE_SQL = `-- Run this in your Supabase SQL Editor
+
+-- Products table
+CREATE TABLE IF NOT EXISTS products (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  description TEXT,
+  category TEXT NOT NULL,
+  icon TEXT DEFAULT 'star',
+  badge TEXT,
+  stock INTEGER DEFAULT 0,
+  prices JSONB DEFAULT '{}',
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Orders table
+CREATE TABLE IF NOT EXISTS orders (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  txn_id TEXT UNIQUE NOT NULL,
+  product_id TEXT REFERENCES products(id),
+  product_name TEXT,
+  duration TEXT,
+  quantity INTEGER DEFAULT 1,
+  email TEXT NOT NULL,
+  whatsapp TEXT,
+  amount INTEGER NOT NULL,
+  status TEXT DEFAULT 'pending',
+  account_data JSONB,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  paid_at TIMESTAMPTZ
+);
+
+-- Enable Row Level Security (optional)
+-- ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+-- ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+
+-- Create policies (adjust as needed)
+-- CREATE POLICY "Public read products" ON products FOR SELECT USING (true);
+-- CREATE POLICY "Service role all" ON orders USING (true);
+
+-- Insert fallback data
+INSERT INTO products (id, name, description, category, icon, badge, stock, prices)
+VALUES 
+  ('spotify','Spotify Premium','Musik tanpa iklan, download offline, kualitas Ultra HD.','music','music','hot',50,'{"1 Bulan":8000,"3 Bulan":22000,"6 Bulan":40000,"1 Tahun":75000}'),
+  ('netflix','Netflix Premium','Stream film & series 4K, akses semua konten tanpa batas.','streaming','video','hot',30,'{"1 Bulan":15000,"3 Bulan":42000,"6 Bulan":80000,"1 Tahun":150000}'),
+  ('chatgpt','ChatGPT Plus','GPT-4o, DALL·E 3, browsing real-time, plugins unlimited.','ai','bot','hot',20,'{"1 Bulan":120000,"3 Bulan":330000,"6 Bulan":600000,"1 Tahun":1100000}'),
+  ('claude','Claude Pro','Claude Sonnet & Opus, unlimited messages, Projects, Priority.','ai','zap','new',15,'{"1 Bulan":130000,"3 Bulan":360000,"6 Bulan":660000,"1 Tahun":1200000}')
+ON CONFLICT (id) DO NOTHING;`;
+
+/* ════════════════════════════════════════
+   STATE
+════════════════════════════════════════ */
+let allProds = [];
+let activeCat = 'all';
+let curProd = null;
+let selDur = null;
+let qty = 1;
+let timerInterval = null;
+let timerSec = 300;
+let curTxnId = null;
+let tIdx = 0;
+let tAutoPlay = null;
+let adminLoggedIn = false;
+
+/* ════════════════════════════════════════
+   THEME
+════════════════════════════════════════ */
+function initTheme() {
+  const saved = localStorage.getItem('theme') || 'light';
+  setTheme(saved);
+}
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  localStorage.setItem('theme', t);
+  const lbl = document.getElementById('theme-lbl');
+  if (lbl) lbl.textContent = t === 'dark' ? 'DARK' : 'LIGHT';
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme');
+  setTheme(cur === 'dark' ? 'light' : 'dark');
+}
+
+/* ════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════ */
+function showPg(id) {
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('act'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('act');
+  document.querySelectorAll('.sb-menu li a').forEach(a => a.classList.remove('act'));
+}
+function goHome() {
+  showPg('pg-home');
+  document.getElementById('nav-home').classList.add('act');
+  closeSb();
+}
+function navTo(sec) {
+  showPg('pg-home');
+  document.getElementById('nav-home').classList.add('act');
+  closeSb();
+  setTimeout(() => {
+    const el = document.getElementById(sec);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+function openAdmin() {
+  showPg('pg-admin');
+  document.getElementById('nav-admin').classList.add('act');
+  closeSb();
+  if (!adminLoggedIn) {
+    document.getElementById('adm-login-wall').style.display = 'flex';
+    document.getElementById('adm-dashboard').style.display = 'none';
+  }
+}
+function closeSb() {
+  const sb = document.getElementById('sb');
+  const hbg = document.getElementById('hbg');
+  sb.classList.remove('open');
+  hbg.classList.remove('open');
+}
+
+/* ════════════════════════════════════════
+   SIDEBAR TOGGLE
+════════════════════════════════════════ */
+document.getElementById('hbg').addEventListener('click', () => {
+  const sb = document.getElementById('sb');
+  const hbg = document.getElementById('hbg');
+  sb.classList.toggle('open');
+  hbg.classList.toggle('open');
+});
+document.addEventListener('click', e => {
+  const sb = document.getElementById('sb');
+  const hbg = document.getElementById('hbg');
+  if (window.innerWidth <= 768 && !sb.contains(e.target) && !hbg.contains(e.target)) {
+    sb.classList.remove('open');
+    hbg.classList.remove('open');
+  }
+});
+
+/* ════════════════════════════════════════
+   ICONS MAP
+════════════════════════════════════════ */
+const ICONS = {
+  music: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`,
+  video: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>`,
+  youtube: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>`,
+  star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  pen: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+  bot: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>`,
+  film: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>`,
+  globe: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  zap: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+};
+
+/* ════════════════════════════════════════
+   FORMAT
+════════════════════════════════════════ */
+function fmtRp(n) {
+  if (n >= 1000000) return 'Rp ' + (n/1000000).toFixed(n%1000000===0?0:1) + 'jt';
+  if (n >= 1000) return 'Rp ' + (n/1000).toFixed(n%1000===0?0:1) + 'rb';
+  return 'Rp ' + n.toLocaleString('id-ID');
+}
+function fmtRpFull(n) { return 'Rp ' + n.toLocaleString('id-ID'); }
+
+/* ════════════════════════════════════════
+   LOAD PRODUCTS
+════════════════════════════════════════ */
+async function loadProds() {
+  let prods = null;
+  if (CFG.SUPABASE_URL && CFG.SUPABASE_KEY) {
+    prods = await SB.get('products', 'order=created_at.asc');
+  }
+  allProds = (prods && prods.length > 0) ? prods.map(p => ({
+    ...p,
+    prices: typeof p.prices === 'string' ? { json: JSON.parse(p.prices) } : { json: p.prices }
+  })) : FALLBACK_PRODS;
+
+  renderProds(allProds);
+  updateChips();
+  renderTestis();
+  renderFAQs();
+  renderContacts();
+  animStats();
+}
+
+function getProdsFiltered(cat) {
+  return cat === 'all' ? allProds : allProds.filter(p => p.cat === cat);
+}
+
+function renderProds(prods) {
+  const grid = document.getElementById('pgrid');
+  const pct = document.getElementById('pct');
+  if (!prods.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--t3);font-size:12px;font-family:'DM Mono',monospace">Tidak ada produk di kategori ini.</div>`;
+    pct.textContent = '0 produk';
+    return;
+  }
+  pct.textContent = prods.length + ' produk';
+  grid.innerHTML = prods.map((p, i) => {
+    const prices = p.prices?.json || p.prices || {};
+    const minPrice = Math.min(...Object.values(prices).map(Number).filter(n => !isNaN(n)));
+    const ico = ICONS[p.icon] || ICONS.star;
+    const stock = p.stock ?? 999;
+    const stockClass = stock <= 5 ? 'low' : 'ok';
+    const stockTxt = stock <= 0 ? 'Habis' : (stock <= 10 ? `Stok: ${stock}` : '');
+    return `<div class="pc anim d${(i%5)+1}" onclick="openDet('${p.id}')">
+      ${p.bdg ? `<div class="p-bdg ${p.bdg}">${p.bdg.toUpperCase()}</div>` : ''}
+      <div class="p-ico">${ico}</div>
+      <div class="p-name">${p.name}</div>
+      <div class="p-desc">${p.desc || p.description || ''}</div>
+      <div class="p-ft">
+        <div><div class="p-price">${isFinite(minPrice) ? fmtRp(minPrice) : '—'}</div><div class="p-sub">mulai dari</div></div>
+        <div class="p-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </div>
+      ${stockTxt ? `<div class="p-stock ${stockClass}" style="display:none">${stockTxt}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function updateChips() {
+  const cats = ['all','streaming','music','productivity','ai'];
+  cats.forEach(c => {
+    const el = document.getElementById('chip-' + c);
+    if (el) el.textContent = c === 'all' ? allProds.length : allProds.filter(p => p.cat === c).length;
+  });
+}
+
+function fcat(cat) {
+  activeCat = cat;
+  document.querySelectorAll('.cats .cat').forEach(b => b.classList.toggle('act', b.dataset.c === cat));
+  document.querySelectorAll('#sb-cats li a').forEach(a => a.classList.toggle('act', a.dataset.cat === cat));
+  renderProds(getProdsFiltered(cat));
+}
+
+/* ════════════════════════════════════════
+   TESTIMONIALS
+════════════════════════════════════════ */
+function renderTestis() {
+  const track = document.getElementById('ttrack');
+  const dots = document.getElementById('tdots');
+  const testis = FALLBACK_TESTI;
+  track.innerHTML = testis.map(t => `
+    <div class="tc">
+      <div class="t-stars">${'★'.repeat(t.rating)}</div>
+      <div class="t-txt">"${t.message}"</div>
+      <div class="t-auth">
+        <div class="t-av">${t.name[0]}</div>
+        <div><div class="t-nm">${t.name}</div><div class="t-pd">${t.product}</div></div>
+      </div>
+    </div>`).join('');
+  dots.innerHTML = testis.map((_,i) => `<div class="tdot ${i===0?'act':''}" onclick="tGo(${i})"></div>`).join('');
+  startTAuto();
+}
+function tGo(i) {
+  tIdx = i;
+  document.getElementById('ttrack').style.transform = `translateX(-${tIdx * 100}%)`;
+  document.querySelectorAll('.tdot').forEach((d,j) => d.classList.toggle('act', j===tIdx));
+}
+function tNext() { tGo((tIdx + 1) % FALLBACK_TESTI.length); }
+function tPrev() { tGo((tIdx - 1 + FALLBACK_TESTI.length) % FALLBACK_TESTI.length); }
+function startTAuto() {
+  clearInterval(tAutoPlay);
+  tAutoPlay = setInterval(tNext, 5000);
+}
+
+/* ════════════════════════════════════════
+   FAQs
+════════════════════════════════════════ */
+function renderFAQs() {
+  document.getElementById('flist').innerHTML = FALLBACK_FAQS.map((f, i) => `
+    <div class="fi" id="faq-${i}">
+      <div class="fq" onclick="toggleFAQ(${i})">
+        <span>${f.question}</span>
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+      </div>
+      <div class="fa"><div class="fa-in">${f.answer}</div></div>
+    </div>`).join('');
+}
+function toggleFAQ(i) {
+  const el = document.getElementById('faq-' + i);
+  el.classList.toggle('op');
+}
+
+/* ════════════════════════════════════════
+   CONTACTS
+════════════════════════════════════════ */
+function renderContacts() {
+  document.getElementById('contact-grid').innerHTML = `
+    <div class="cc" onclick="window.open('https://wa.me/6281234567890','_blank')">
+      <div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+      <div><div class="c-lbl">WhatsApp</div><div class="c-val">+62 812-3456-7890</div></div>
+    </div>
+    <div class="cc" onclick="window.open('https://t.me/seonsprems','_blank')">
+      <div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+      <div><div class="c-lbl">Telegram</div><div class="c-val">@seonsprems</div></div>
+    </div>`;
+}
+
+/* ════════════════════════════════════════
+   STATS COUNTER
+════════════════════════════════════════ */
+function animStats() {
+  const el = document.getElementById('stat-customers');
+  let n = 0, target = 1847;
+  const step = Math.ceil(target / 40);
+  const iv = setInterval(() => {
+    n = Math.min(n + step, target);
+    el.textContent = n.toLocaleString('id-ID') + '+';
+    if (n >= target) clearInterval(iv);
+  }, 30);
+}
+
+/* ════════════════════════════════════════
+   PRODUCT DETAIL
+════════════════════════════════════════ */
+function openDet(id) {
+  curProd = allProds.find(p => p.id === id);
+  if (!curProd) return;
+  const prices = curProd.prices?.json || curProd.prices || {};
+  const ico = ICONS[curProd.icon] || ICONS.star;
+
+  document.getElementById('d-ico').innerHTML = ico;
+  document.getElementById('d-ttl').textContent = curProd.name;
+  document.getElementById('d-sub').textContent = curProd.desc || curProd.description || '';
+  document.getElementById('s-prod').textContent = curProd.name;
+
+  const durs = Object.entries(prices);
+  const durGrid = document.getElementById('dur-grid');
+  durGrid.innerHTML = durs.map(([dur, price], i) => `
+    <div class="db ${i===0?'sel':''}" onclick="selDuration('${dur}', ${price}, this)">
+      <div class="dl">${dur}</div>
+      <div class="dp">${fmtRp(Number(price))}</div>
+    </div>`).join('');
+
+  if (durs.length > 0) {
+    selDur = { dur: durs[0][0], price: Number(durs[0][1]) };
+  }
+  qty = 1;
+  document.getElementById('qty-v').textContent = '1';
+  updateSum();
+
+  // Hide QRIS section
+  document.getElementById('qr-sec').classList.remove('show');
+  document.getElementById('pay-btn').style.display = '';
+  clearTimerInterval();
+
+  showPg('pg-det');
+  window.scrollTo(0, 0);
+}
+
+function selDuration(dur, price, el) {
+  document.querySelectorAll('.db').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel');
+  selDur = { dur, price: Number(price) };
+  updateSum();
+}
+
+function chqty(delta) {
+  qty = Math.max(1, qty + delta);
+  document.getElementById('qty-v').textContent = qty;
+  updateSum();
+}
+
+function updateSum() {
+  if (!selDur) return;
+  const total = selDur.price * qty;
+  document.getElementById('s-dur').textContent = selDur.dur;
+  document.getElementById('s-qty').textContent = qty + ' akun';
+  document.getElementById('s-tot').textContent = fmtRpFull(total);
+}
+
+/* ════════════════════════════════════════
+   PAYMENT
+════════════════════════════════════════ */
+async function doPayment() {
+  const email = document.getElementById('inp-email').value.trim();
+  const wa = document.getElementById('inp-wa').value.trim();
+
+  if (!selDur) return toast('Pilih durasi berlangganan!', 'warn');
+  if (!email || !email.includes('@')) return toast('Masukkan email yang valid!', 'warn');
+  if (!wa || wa.length < 10) return toast('Masukkan nomor WhatsApp yang valid!', 'warn');
+  if (!CFG.APIKEY) {
+    toast('API Key belum diset. Klik ⚙️ untuk mengatur.', 'err');
+    setTimeout(openConfig, 500);
+    return;
+  }
+
+  const total = selDur.price * qty;
+  const btn = document.getElementById('pay-btn');
+  btn.disabled = true;
+  btn.innerHTML = `<span class="ld"></span> <span>Membuat pembayaran...</span>`;
+
+  try {
+    const resp = await TAKO.create(total);
+    // Expected: { status: true, data: { qrImage/qr_image/qr_url/qrcode, id/trx_id/transaction_id } }
+    const d = resp.data || resp;
+    const qrSrc = d.qrImage || d.qr_image || d.qr_url || d.qrcode || d.data || '';
+    const txnId = d.id || d.trx_id || d.transaction_id || d.txnId || ('TXN' + Date.now());
+
+    curTxnId = txnId;
+    document.getElementById('qr-amt').textContent = fmtRpFull(total);
+
+    // Show QR image
+    const qrImg = document.getElementById('qr-img');
+    const qrLd = document.getElementById('qr-ld');
+    if (qrSrc) {
+      qrImg.src = qrSrc.startsWith('data:') || qrSrc.startsWith('http') ? qrSrc : `data:image/png;base64,${qrSrc}`;
+      qrImg.onload = () => { qrLd.style.display = 'none'; qrImg.style.display = 'block'; };
+      qrImg.onerror = () => { qrLd.innerHTML = '<span style="font-size:10px;color:var(--t3);font-family:DM Mono,monospace">QR tidak bisa dimuat.<br>Gunakan ID transaksi.</span>'; };
+    } else {
+      qrLd.innerHTML = `<span style="font-size:10px;color:var(--t3);font-family:'DM Mono',monospace;text-align:center;padding:10px">QR tidak tersedia.<br>Hubungi support.</span>`;
+    }
+
+    // Show txn id
+    const txnBox = document.getElementById('txn-box');
+    document.getElementById('txn-id-display').textContent = txnId;
+    txnBox.style.display = 'flex';
+
+    // Show QRIS section
+    document.getElementById('qr-sec').classList.add('show');
+    btn.style.display = 'none';
+
+    // Save pending order to Supabase
+    try {
+      await SB.post('orders', {
+        txn_id: txnId,
+        product_id: curProd.id,
+        product_name: curProd.name,
+        duration: selDur.dur,
+        quantity: qty,
+        email: email,
+        whatsapp: wa,
+        amount: total,
+        status: 'pending'
+      });
+    } catch(e) { console.warn('Failed to save order to Supabase:', e); }
+
+    startTimer(total, email, wa, txnId);
+  } catch(e) {
+    toast(e.message || 'Gagal membuat pembayaran', 'err');
+    btn.disabled = false;
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg><span>Bayar via QRIS</span>`;
+  }
+}
+
+function startTimer(total, email, wa, txnId) {
+  timerSec = 300;
+  const circumference = 2 * Math.PI * 28; // r=28
+  const ring = document.getElementById('timer-ring');
+  ring.style.strokeDasharray = circumference;
+
+  clearTimerInterval();
+  timerInterval = setInterval(async () => {
+    timerSec--;
+    const mins = String(Math.floor(timerSec / 60)).padStart(2, '0');
+    const secs = String(timerSec % 60).padStart(2, '0');
+    document.getElementById('timer-txt').textContent = `${mins}:${secs}`;
+    const offset = circumference * (1 - timerSec / 300);
+    ring.style.strokeDashoffset = offset;
+    if (timerSec <= 60) ring.style.stroke = 'var(--red)';
+    if (timerSec <= 0) {
+      clearTimerInterval();
+      document.getElementById('timer-txt').textContent = '00:00';
+      toast('Waktu habis! Silakan buat pembayaran baru.', 'warn');
+    }
+  }, 1000);
+}
+
+function clearTimerInterval() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+}
+
+async function checkPay() {
+  if (!curTxnId) return;
+  const btn = document.getElementById('chk-btn');
+  btn.disabled = true;
+  btn.innerHTML = `<span class="ld dk"></span> <span>Mengecek...</span>`;
+  try {
+    const resp = await TAKO.status(curTxnId);
+    const paid = resp.data?.status === 'paid' || resp.data?.status === 'success' || resp.status === 'paid' || resp.paid === true;
+    if (paid) {
+      clearTimerInterval();
+      await onPaySuccess();
+    } else {
+      toast('Pembayaran belum dikonfirmasi. Silakan coba lagi.', 'warn');
+    }
+  } catch(e) {
+    toast(e.message || 'Gagal cek status', 'err');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Cek Status Pembayaran</span>`;
+  }
+}
+
+async function onPaySuccess() {
+  const email = document.getElementById('inp-email').value.trim();
+  const total = selDur.price * qty;
+  // Update order status
+  try {
+    const orders = await SB.get('orders', `txn_id=eq.${curTxnId}`);
+    if (orders && orders.length > 0) {
+      await SB.patch('orders', orders[0].id, { status: 'paid', paid_at: new Date().toISOString() });
+    }
+    // Update stock
+    if (curProd.stock !== undefined) {
+      const newStock = Math.max(0, (curProd.stock || 0) - qty);
+      await SB.patch('products', curProd.id, { stock: newStock });
+    }
+  } catch(e) { console.warn('Failed to update order:', e); }
+
+  document.getElementById('a-box').innerHTML = `
+    <div class="a-row"><span class="a-k">Produk</span><span class="a-v">${curProd.name}</span></div>
+    <div class="a-row"><span class="a-k">Durasi</span><span class="a-v">${selDur.dur}</span></div>
+    <div class="a-row"><span class="a-k">Email</span><span class="a-v">${email}</span></div>
+    <div class="a-row"><span class="a-k">Total</span><span class="a-v">${fmtRpFull(total)}</span></div>
+    <div class="a-row"><span class="a-k">ID Transaksi</span><span class="a-v" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">${curTxnId}<button class="cpbtn" onclick="navigator.clipboard.writeText('${curTxnId}')">SALIN</button></span></div>`;
+  document.getElementById('sov').classList.add('show');
+}
+
+function closeSuc() {
+  document.getElementById('sov').classList.remove('show');
+  goHome();
+}
+
+function copyTxnId() {
+  if (curTxnId) {
+    navigator.clipboard.writeText(curTxnId).then(() => toast('ID transaksi disalin!', 'ok'));
+  }
+}
+
+/* ════════════════════════════════════════
+   CONFIG MODAL
+════════════════════════════════════════ */
+function openConfig() {
+  document.getElementById('mk-inp').value = CFG.APIKEY;
+  document.getElementById('tako-user-inp').value = CFG.TAKO_USER;
+  document.getElementById('sb-url-inp').value = CFG.SUPABASE_URL;
+  document.getElementById('sb-key-inp').value = CFG.SUPABASE_KEY;
+  document.getElementById('adm-pw-cfg').value = localStorage.getItem('adm_pw') || '';
+  document.getElementById('cfg-modal').classList.add('show');
+}
+function closeCfg() { document.getElementById('cfg-modal').classList.remove('show'); }
+function saveCfg() {
+  const mk = document.getElementById('mk-inp').value.trim();
+  const tu = document.getElementById('tako-user-inp').value.trim();
+  const su = document.getElementById('sb-url-inp').value.trim();
+  const sk = document.getElementById('sb-key-inp').value.trim();
+  const pw = document.getElementById('adm-pw-cfg').value;
+  if (mk) localStorage.setItem('neo_mk', mk);
+  if (tu) localStorage.setItem('tako_user', tu);
+  if (su) localStorage.setItem('sb_url', su.replace(/\/$/, ''));
+  if (sk) localStorage.setItem('sb_key', sk);
+  if (pw) localStorage.setItem('adm_pw', pw);
+  closeCfg();
+  toast('Konfigurasi disimpan!', 'ok');
+  loadProds();
+}
+
+/* ════════════════════════════════════════
+   ADMIN
+════════════════════════════════════════ */
+function doAdminLogin() {
+  const pw = document.getElementById('adm-pw').value;
+  if (pw === CFG.ADMIN_PW) {
+    adminLoggedIn = true;
+    document.getElementById('adm-login-wall').style.display = 'none';
+    document.getElementById('adm-dashboard').style.display = 'block';
+    loadAdminDashboard();
+    toast('Selamat datang, Admin!', 'ok');
+  } else {
+    toast('Password salah!', 'err');
+    document.getElementById('adm-pw').value = '';
+  }
+}
+function adminLogout() {
+  adminLoggedIn = false;
+  document.getElementById('adm-login-wall').style.display = 'flex';
+  document.getElementById('adm-dashboard').style.display = 'none';
+  document.getElementById('adm-pw').value = '';
+}
+function loadAdminDashboard() {
+  loadAdminStats();
+  loadAdminProds();
+  loadAdminOrders();
+  loadAdminChart();
+  document.getElementById('sql-display').textContent = SUPABASE_SQL;
+}
+async function loadAdminStats() {
+  const prods = allProds;
+  document.getElementById('astat-prod').textContent = prods.length;
+  const lowStock = prods.filter(p => (p.stock ?? 999) <= 10).length;
+  document.getElementById('astat-low').textContent = lowStock;
+  if (lowStock > 0) {
+    const names = prods.filter(p => (p.stock ?? 999) <= 10).map(p => p.name.split(' ')[0]).join(', ');
+    document.getElementById('astat-low-lbl').textContent = '⚠ ' + names;
+  }
+  // Load orders from Supabase
+  if (CFG.SUPABASE_URL && CFG.SUPABASE_KEY) {
+    const orders = await SB.get('orders', 'status=eq.paid');
+    if (orders) {
+      const total = orders.reduce((s, o) => s + (o.amount || 0), 0);
+      document.getElementById('astat-orders').textContent = orders.length;
+      document.getElementById('astat-rev').textContent = fmtRp(total);
+    }
+  }
+}
+async function loadAdminProds() {
+  const tbody = document.getElementById('adm-tbody');
+  tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:16px;color:var(--t3);font-size:11px;font-family:'DM Mono',monospace">Memuat...</td></tr>`;
+  const prods = allProds;
+  document.getElementById('astat-prod').textContent = prods.length;
+  tbody.innerHTML = prods.map(p => {
+    const prices = p.prices?.json || p.prices || {};
+    const minP = Math.min(...Object.values(prices).map(Number).filter(n => !isNaN(n)));
+    const stock = p.stock ?? '—';
+    const stockLow = typeof stock === 'number' && stock <= 10;
+    const sbClass = stock <= 0 ? 'empty' : (stock <= 10 ? 'low' : 'available');
+    const sbTxt = stock <= 0 ? 'Habis' : (stock <= 10 ? 'Rendah' : 'Tersedia');
+    return `<tr>
+      <td><div class="td-name">${p.name}</div></td>
+      <td><div class="td-cat">${p.cat || p.category || '—'}</div></td>
+      <td><div class="td-price">${isFinite(minP) ? fmtRp(minP) : '—'}</div></td>
+      <td><div class="td-stock ${stockLow?'low':''}">${stock}</div></td>
+      <td><span class="stock-badge ${sbClass}">${sbTxt}</span></td>
+      <td><div class="td-actions">
+        <button class="act-btn plus" onclick="adjStock('${p.id}', 1)" title="Tambah 1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>+1
+        </button>
+        <button class="act-btn minus" onclick="adjStock('${p.id}', -1)" title="Kurangi 1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>-1
+        </button>
+        <button class="act-btn edit" onclick="openEditStock('${p.id}')" title="Set stok">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Edit
+        </button>
+      </div></td>
+    </tr>`;
+  }).join('') || `<tr><td colspan="6" style="text-align:center;padding:16px;color:var(--t3);font-size:11px">Tidak ada produk.</td></tr>`;
+}
+async function loadAdminOrders() {
+  if (!CFG.SUPABASE_URL || !CFG.SUPABASE_KEY) {
+    document.getElementById('orders-tbody').innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--t3);padding:14px;font-size:11px;font-family:'DM Mono',monospace">Supabase belum dikonfigurasi.</td></tr>`;
+    return;
+  }
+  const orders = await SB.get('orders', 'order=created_at.desc&limit=20');
+  if (!orders || orders.length === 0) {
+    document.getElementById('orders-tbody').innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--t3);padding:14px;font-size:11px;font-family:'DM Mono',monospace">Belum ada pesanan.</td></tr>`;
+    return;
+  }
+  document.getElementById('orders-tbody').innerHTML = orders.map(o => {
+    const statusColor = o.status === 'paid' ? 'available' : (o.status === 'pending' ? 'low' : 'empty');
+    const dt = new Date(o.created_at).toLocaleString('id-ID', {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+    return `<tr>
+      <td><span style="font-family:'DM Mono',monospace;font-size:10px">${o.txn_id?.slice(0,14) || '—'}…</span></td>
+      <td>${o.product_name || '—'}</td>
+      <td><span style="font-size:11px">${o.email || '—'}</span></td>
+      <td><span style="font-family:'DM Mono',monospace;font-size:11px">${o.amount ? fmtRp(o.amount) : '—'}</span></td>
+      <td><span class="stock-badge ${statusColor}">${o.status || '—'}</span></td>
+      <td><span style="font-size:10.5px;font-family:'DM Mono',monospace;color:var(--t3)">${dt}</span></td>
+    </tr>`;
+  }).join('');
+}
+function loadAdminChart() {
+  const chart = document.getElementById('adm-chart');
+  const prods = allProds.slice(0, 6);
+  const maxVal = 120;
+  chart.innerHTML = prods.map((p, i) => {
+    const h = Math.floor(Math.random() * 80) + 20;
+    return `<div class="bar-wrap">
+      <div class="bar" style="height:${h}px" title="${p.name}: ${h} penjualan"></div>
+      <div class="bar-lbl">${p.name.split(' ')[0]}</div>
+    </div>`;
+  }).join('');
+}
+
+async function adjStock(id, delta) {
+  const prod = allProds.find(p => p.id === id);
+  if (!prod) return;
+  const newStock = Math.max(0, (prod.stock || 0) + delta);
+  if (CFG.SUPABASE_URL && CFG.SUPABASE_KEY) {
+    const res = await SB.patch('products', id, { stock: newStock });
+    if (res) {
+      prod.stock = newStock;
+      toast(`Stok ${prod.name}: ${newStock}`, 'ok');
+    } else {
+      toast('Gagal update stok di Supabase', 'err');
+    }
+  } else {
+    prod.stock = newStock;
+    toast(`Stok ${prod.name}: ${newStock} (lokal saja)`, 'warn');
+  }
+  loadAdminProds();
+  loadAdminStats();
+}
+
+function openEditStock(id) {
+  const prod = allProds.find(p => p.id === id);
+  if (!prod) return;
+  document.getElementById('stock-prod-name').textContent = prod.name;
+  document.getElementById('stock-prod-id').value = id;
+  document.getElementById('stock-inp').value = prod.stock || 0;
+  document.getElementById('stock-modal').classList.add('show');
+}
+
+async function saveStock() {
+  const id = document.getElementById('stock-prod-id').value;
+  const newStock = parseInt(document.getElementById('stock-inp').value) || 0;
+  const prod = allProds.find(p => p.id === id);
+  if (!prod) return;
+  if (CFG.SUPABASE_URL && CFG.SUPABASE_KEY) {
+    const res = await SB.patch('products', id, { stock: newStock });
+    if (res) { prod.stock = newStock; toast('Stok berhasil diupdate!', 'ok'); }
+    else toast('Gagal update stok', 'err');
+  } else {
+    prod.stock = newStock;
+    toast('Stok diupdate (lokal saja, Supabase belum dikonfigurasi)', 'warn');
+  }
+  document.getElementById('stock-modal').classList.remove('show');
+  loadAdminProds();
+  loadAdminStats();
+}
+
+function openAddProd() {
+  document.getElementById('aprod-title').textContent = 'Tambah Produk';
+  document.getElementById('edit-prod-id').value = '';
+  ['p-name-inp','p-desc-inp','p-p1-inp','p-p3-inp','p-p6-inp','p-p12-inp','p-stock-inp'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('p-cat-inp').value = 'streaming';
+  document.getElementById('p-badge-inp').value = '';
+  document.getElementById('add-prod-modal').classList.add('show');
+}
+
+async function saveProd() {
+  const name = document.getElementById('p-name-inp').value.trim();
+  const cat = document.getElementById('p-cat-inp').value;
+  const desc = document.getElementById('p-desc-inp').value.trim();
+  const p1 = parseInt(document.getElementById('p-p1-inp').value) || 0;
+  const p3 = parseInt(document.getElementById('p-p3-inp').value) || 0;
+  const p6 = parseInt(document.getElementById('p-p6-inp').value) || 0;
+  const p12 = parseInt(document.getElementById('p-p12-inp').value) || 0;
+  const stock = parseInt(document.getElementById('p-stock-inp').value) || 0;
+  const badge = document.getElementById('p-badge-inp').value;
+  if (!name) return toast('Nama produk harus diisi!', 'warn');
+  const id = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const prodData = { id, name, description: desc, category: cat, cat, icon: 'star', badge: badge || null, stock, prices: { '1 Bulan': p1, '3 Bulan': p3, '6 Bulan': p6, '1 Tahun': p12 } };
+  if (CFG.SUPABASE_URL && CFG.SUPABASE_KEY) {
+    const res = await SB.post('products', { ...prodData, prices: prodData.prices });
+    if (res) toast('Produk berhasil ditambahkan!', 'ok');
+    else toast('Gagal tambah produk ke Supabase', 'err');
+    await loadProds();
+  } else {
+    allProds.push({ ...prodData, prices: { json: prodData.prices } });
+    renderProds(getProdsFiltered(activeCat));
+    toast('Produk ditambahkan (lokal saja)', 'warn');
+  }
+  document.getElementById('add-prod-modal').classList.remove('show');
+  loadAdminProds();
+  updateChips();
+}
+
+function copySQL() {
+  navigator.clipboard.writeText(SUPABASE_SQL).then(() => toast('SQL disalin!', 'ok'));
+}
+
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
+function toast(msg, type='ok') {
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+  const icons = {
+    ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>',
+    err: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+    warn: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
+  };
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.innerHTML = `${icons[type] || icons.ok} ${msg}`;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+initTheme();
+loadProds();
+</script>
+</body>
+</html>

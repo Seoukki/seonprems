@@ -1,0 +1,20 @@
+{
+  "name": "seonsprems-store",
+  "version": "2.0.0",
+  "description": "SeonsPrems Premium Digital Store — B&W theme with Supabase & QRIS",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod",
+    "install:deps": "npm install"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "vercel": "latest"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
